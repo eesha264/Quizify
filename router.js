@@ -1,104 +1,123 @@
-// --- Quizify Client-Side Router ---
+// --- Quizify Client-Side Router V4 (Screenshot Match) ---
 
 // 1. Define the HTML Templates for Each Page (View)
 const views = {
-    // 🏠 Page 1: Home Page
+    // 🏠 Page 1: Home Page (Screenshot Match)
     'home': () => `
         <div class="card home-container">
-            <div class="home-illustration">
-                <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-lavender);">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            <div class="home-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L1 21h22L12 2z" fill="#A7F3F0" stroke="none"/>
+                    <path d="M12 10v6"/>
+                    <circle cx="12" cy="18" r="1"/>
                 </svg>
             </div>
-            <h1>Welcome to Quizify – Play. Compete. Win.</h1>
-            <p>Host and join live quizzes with real-time leaderboards.</p>
+            <h1 class="title-gradient">Welcome to Quizify</h1>
+            <p>Play. Compete. Win.</p>
+            <p class="subtext">Host and join live quizzes with real-time leaderboards</p>
             
             <div class="button-group">
-                <a href="/join" class="btn btn-primary nav-link">Join Quiz</a>
-                <a href="/host" class="btn btn-secondary nav-link">Host Quiz</a>
+                <a href="/join" class="btn btn-home-turq nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle></svg>
+                    Join Quiz
+                </a>
+                <a href="/host" class="btn btn-home-lav nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5l4 4L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    Host Quiz
+                </a>
             </div>
+
+            <div class="bottom-info-card">
+                <div style="font-size: 24px; color: var(--accent-lavender); margin-bottom: 5px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <p style="font-size: 0.95rem;">Join thousands of players worldwide in real-time quiz competitions</p>
+            </div>
+            <p class="footer-text">Made with ❤️ by Team Quizify © 2025</p>
         </div>
     `,
 
-    // 🧑‍🏫 Page 2: Host Quiz Page
+    // 🧑‍🏫 Page 2: Host Quiz Page (Screenshot Match)
     'host': () => `
         <div class="host-dashboard">
             <div class="card">
-                <h2>Create Your Quiz</h2>
+                <h2 class="title-gradient" style="text-align: left;">Host a Quiz</h2>
+                <p class="host-header-text">Create questions and start your live quiz</p>
+                <h3 style="margin-bottom: 1.5rem;">Add New Question</h3>
+                
                 <form onsubmit="return false;">
                     <div class="form-group">
                         <label for="question">Question Text</label>
-                        <textarea id="question" rows="3" placeholder="e.g., What is the capital of Japan?"></textarea>
+                        <textarea id="question" rows="2" placeholder="Enter your question..."></textarea>
                     </div>
 
-                    <label>Answer Options (Select correct one)</label>
-                    <div class="question-options">
-                        <div class="form-group option-group">
-                            <input type="radio" name="correct-answer" id="opt1-radio" checked>
-                            <input type="text" id="opt1" placeholder="Option 1">
-                        </div>
-                        <div class="form-group option-group">
-                            <input type="radio" name="correct-answer" id="opt2-radio">
-                            <input type="text" id="opt2" placeholder="Option 2">
-                        </div>
-                        <div class="form-group option-group">
-                            <input type="radio" name="correct-answer" id="opt3-radio">
-                            <input type="text" id="opt3" placeholder="Option 3">
-                        </div>
-                        <div class="form-group option-group">
-                            <input type="radio" name="correct-answer" id="opt4-radio">
-                            <input type="text" id="opt4" placeholder="Option 4">
-                        </div>
+                    <h4 style="font-size: 1.1rem; font-weight: 600; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--text-dark);">Options</h4>
+                    <div class="options-group">
+                        <label class="option-label"><input type="radio" name="correct-answer" checked>Option 1</label>
+                        <label class="option-label"><input type="radio" name="correct-answer">Option 2</label>
+                        <label class="option-label"><input type="radio" name="correct-answer">Option 3</label>
+                        <label class="option-label"><input type="radio" name="correct-answer">Option 4</label>
+                        <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem; margin-bottom: 0;">Select the correct answer</p>
                     </div>
 
                     <div class="form-group">
                         <label for="time-limit">Time Limit (seconds)</label>
-                        <select id="time-limit">
-                            <option value="10">10 seconds</option>
-                            <option value="20" selected>20 seconds</option>
-                            <option value="30">30 seconds</option>
-                        </select>
+                        <div class="time-limit-field">
+                            <span style="font-size: 1.2em;">🕒</span>
+                            <select id="time-limit">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30" selected>30</option>
+                            </select>
+                        </div>
                     </div>
                     
-                    <button type="button" class="btn btn-primary btn-block">Add Question</button>
+                    <button type="button" class="btn btn-join-vibrant btn-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        Add Question
+                    </button>
                 </form>
             </div>
 
             <div class="card">
-                <h2>Your Questions</h2>
-                <ul class="question-list">
-                    <li class="question-item"><strong>Example Question 1 (20s)</strong><p>Correct: Option 3</p></li>
-                    <li class="question-item"><strong>Example Question 2 (30s)</strong><p>Correct: Option 1</p></li>
-                </ul>
-                <a href="/quiz" class="btn btn-secondary btn-block nav-link" style="margin-top: 1.5rem;">Start Quiz (View)</a>
+                <h3 style="margin-bottom: 1.5rem;">Questions (0)</h3>
+                <div class="questions-list-card">
+                    No questions added yet
+                </div>
+                <a href="/quiz" class="btn btn-home-lav nav-link" style="margin-top: 1.5rem; visibility: hidden;">Start Quiz</a>
             </div>
         </div>
     `,
 
-    // 🎯 Page 3: Join Quiz Page
+    // 🎯 Page 3: Join Quiz Page (Screenshot Match)
     'join': () => `
-        <div class="card">
-            <h2>Join a Quiz Now!</h2>
+        <div class="card join-card">
+            <h1 class="title-gradient">Join a Quiz Now!</h1>
+            <p style="margin-bottom: 2rem;">Enter the code or scan the QR to join</p>
             
-            <div class="qr-code-placeholder">
-                [ QR Code Placeholder ]
+            <div class="qr-container">
+                <div class="qr-code-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><line x1="21" y1="14" x2="14" y2="21"></line><line x1="14" y1="14" x2="21" y2="21"></line>
+                    </svg>
+                </div>
+                <p style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0;">Scan to Join Instantly</p>
             </div>
-            <p>Scan to Join</p>
+
+            <div class="separator">OR</div>
 
             <form onsubmit="return false;">
                 <div class="form-group">
-                    <label for="quiz-code" style="text-align: center;">Or Enter Code</label>
-                    <input type="text" id="quiz-code" placeholder="Enter 6-digit code" style="text-align: center; font-size: 1.2rem; letter-spacing: 3px;">
+                    <input type="text" id="quiz-code" placeholder="Enter Quiz Code" class="input-like-btn">
                 </div>
-                <a href="/quiz" class="btn btn-primary btn-block nav-link">Join Now</a>
+                <a href="/quiz" class="btn btn-join-vibrant btn-block nav-link">Join Now &rarr;</a>
             </form>
+            
+            <a href="/home" class="nav-link" style="display: block; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-light);">Back to Home</a>
         </div>
     `,
 
-    // 💡 Page 4: Live Quiz Page
+    // 💡 Page 4: Live Quiz Page (Original Layout)
     'quiz': () => `
         <div class="card quiz-card">
             <div class="timer-container">
@@ -120,7 +139,7 @@ const views = {
         </div>
     `,
 
-    // 🏆 Page 5: Leaderboard Page
+    // 🏆 Page 5: Leaderboard Page (Original Layout)
     'leaderboard': () => `
         <div class="card">
             <h2>Live Leaderboard 🏆</h2>
@@ -140,6 +159,16 @@ const views = {
                     <span class="rank">🥉</span>
                     <span class="name">Ben</span>
                     <span class="score">980 pts</span>
+                </li>
+                <li class="player-rank">
+                    <span class="rank">4</span>
+                    <span class="name">Maria</span>
+                    <span class="score">850 pts</span>
+                </li>
+                <li class="player-rank">
+                    <span class="rank">5</span>
+                    <span class="name">David</span>
+                    <span class="score">720 pts</span>
                 </li>
             </ol>
 
@@ -200,6 +229,3 @@ document.addEventListener('DOMContentLoaded', () => {
     const initialPath = window.location.pathname;
     navigate(initialPath);
 });
-
-// Note: The 'nav-link' class must be added to all internal <a> tags for the router to intercept the click.
-// This is already done in the templates above.
