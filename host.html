@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Quiz - Quizify</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="host-dashboard">
+        <div class="card">
+            <h2>Create Your Quiz</h2>
+            <form>
+                <div class="form-group">
+                    <label for="question">Question Text</label>
+                    <textarea id="question" rows="3" placeholder="e.g., What is the capital of Japan?"></textarea>
+                </div>
+
+                <label>Answer Options (Select correct one)</label>
+                <div class="question-options">
+                    <div class="form-group option-group">
+                        <input type="radio" name="correct-answer" id="opt1-radio" checked>
+                        <input type="text" id="opt1" placeholder="Option 1">
+                    </div>
+                    <div class="form-group option-group">
+                        <input type="radio" name="correct-answer" id="opt2-radio">
+                        <input type="text" id="opt2" placeholder="Option 2">
+                    </div>
+                    <div class="form-group option-group">
+                        <input type="radio" name="correct-answer" id="opt3-radio">
+                        <input type="text" id="opt3" placeholder="Option 3">
+                    </div>
+                    <div class="form-group option-group">
+                        <input type="radio" name="correct-answer" id="opt4-radio">
+                        <input type="text" id="opt4" placeholder="Option 4">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="time-limit">Time Limit (seconds)</label>
+                    <select id="time-limit">
+                        <option value="10">10 seconds</option>
+                        <option value="20" selected>20 seconds</option>
+                        <option value="30">30 seconds</option>
+                        <option value="60">60 seconds</option>
+                    </select>
+                </div>
+                
+                <button type="button" class="btn btn-primary btn-block">Add Question</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Your Questions</h2>
+            <ul class="question-list">
+                <li class="question-item">
+                    <strong>What is 2 + 2? (20s)</strong>
+                    <p>Correct: 4</p>
+                </li>
+                <li class="question-item">
+                    <strong>Which planet is red? (30s)</strong>
+                    <p>Correct: Mars</p>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-secondary btn-block" style="margin-top: 1.5rem;">Start Quiz</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <a href="index.html">Back to Home</a>
+    </footer>
+
+</body>
+</html>
